@@ -26,7 +26,7 @@ public class ClientController {
     }
 
     @GetMapping("/{id}")
-    public ClientResponse get(@PathVariable UUID id) {
+    public ClientResponse get(@PathVariable("id") UUID id) {
         return bankService.getClient(id);
     }
 }

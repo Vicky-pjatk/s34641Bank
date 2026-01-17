@@ -11,8 +11,8 @@ public class Transaction {
     private final TransactionType type;
     private final BigDecimal amount;
     private final TransactionStatus status;
-    private final BigDecimal balanceAfter;
-    private final String message;
+    private final BigDecimal balanceAfter; // może być null (np. REJECTED)
+    private final String message;          // może być null, ale zwykle ustawiamy tekst
     private final Instant createdAt;
 
     public Transaction(UUID id,
@@ -28,8 +28,11 @@ public class Transaction {
         this.type = Objects.requireNonNull(type);
         this.amount = Objects.requireNonNull(amount);
         this.status = Objects.requireNonNull(status);
-        this.balanceAfter = Objects.requireNonNull(balanceAfter);
-        this.message = Objects.requireNonNull(message);
+
+        // te pola celowo mogą być null w przypadku REJECTED
+        this.balanceAfter = balanceAfter;
+        this.message = message;
+
         this.createdAt = Objects.requireNonNull(createdAt);
     }
 
